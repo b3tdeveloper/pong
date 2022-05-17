@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class CheckCollision : MonoBehaviour
 {
-    private int counter;
-    private Rigidbody2D rb2d;
+    public int counter = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -23,11 +21,8 @@ public class CheckCollision : MonoBehaviour
     {
         if (coll.collider.CompareTag("Player"))
         {
-            Debug.Log("Worked");
-            Vector2 vel;
-            vel.x = rb2d.velocity.x;
-            vel.y = (rb2d.velocity.y / 2) + (coll.collider.attachedRigidbody.velocity.y / 3);
-            rb2d.velocity = vel;
+            counter++;
+            Debug.Log(counter + "Worked");
         }
     }
 
