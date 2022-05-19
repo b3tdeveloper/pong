@@ -29,12 +29,12 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player1Score == 2 & isClap == false)
+        if (player1Score == 10 & isClap == false)
         {
             congratulationsGameObject.gameObject.SetActive(true);
             congratulations.text = "PLAYER 1 WON";
             isClap = true;
-        }else if (player2Score == 2 & isClap == false)
+        }else if (player2Score == 10 & isClap == false)
         {
             congratulationsGameObject.gameObject.SetActive(true);
             congratulations.text = "PLAYER 2 WON";
