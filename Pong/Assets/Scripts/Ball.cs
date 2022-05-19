@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour
 {
     private Rigidbody2D rigidbody2d;
     public float speed = 10f;
+    public Score score;
 
     // Start is called before the first frame update
     void Start()
@@ -47,9 +48,12 @@ public class Ball : MonoBehaviour
             vel.y = (2 * rigidbody2d.velocity.y / 3) + (coll.collider.attachedRigidbody.velocity.y / 3);
             rigidbody2d.velocity = vel;
         }
-        if (coll.collider.CompareTag("EdgeWall"))
+        if (coll.collider.CompareTag("EdgeWall") & score.isClap == false)
         {
+            
+            
             RestartGame();
+            
         }
     }
 }
