@@ -8,11 +8,14 @@ public class Ball : MonoBehaviour
     public float speed = 10f;
     public Score score;
 
+    public ParticleSystem explosion;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         Invoke("MoveBall", 2);
+        explosion.Stop();
     }
 
     // Update is called once per frame
@@ -47,6 +50,7 @@ public class Ball : MonoBehaviour
             vel.x = rigidbody2d.velocity.x;
             vel.y = (2 * rigidbody2d.velocity.y / 3) + (coll.collider.attachedRigidbody.velocity.y / 3);
             rigidbody2d.velocity = vel;
+            explosion.Play();
         }
         if (coll.collider.CompareTag("EdgeWall") & score.isClap == false)
         {
