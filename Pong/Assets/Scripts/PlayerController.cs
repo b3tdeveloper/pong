@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Find out which player is controlling. 
         if (isPlayer1)
         {
             rigidbody2d.velocity = Vector2.up * speed * Input.GetAxisRaw("Vertical1");
@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
             rigidbody2d.velocity = Vector2.up * speed * Input.GetAxisRaw("Vertical2");
         }
 
+        // Restrict them.
         var pos = transform.position;
         if (pos.y > boundY)
         {

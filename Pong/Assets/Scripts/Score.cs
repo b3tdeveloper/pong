@@ -22,6 +22,7 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Disable text at the beginning of the game.
         congratulations.text = "";
         congratulationsGameObject.gameObject.SetActive(false);
     }
@@ -29,6 +30,7 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If a player reaches to the 10 point clap that player.
         if (player1Score == 10 & isClap == false)
         {
             congratulationsGameObject.gameObject.SetActive(true);
@@ -44,6 +46,7 @@ public class Score : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // if the ball collide with the left or right walls increase the score according the wall.
         if (collision.gameObject == leftWall & isClap == false)
         {
             player2Score++;
@@ -57,6 +60,7 @@ public class Score : MonoBehaviour
 
     private void NextScene()
     {
+        // I am planning to make end scene. This is way to go there.
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
