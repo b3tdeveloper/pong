@@ -13,6 +13,12 @@ public class Ball : MonoBehaviour
     public ParticleSystem explosion;
     public ParticleSystem dead;
 
+    [Header("Audio Parameters")]
+    [SerializeField] private AudioClip player1hitSound;
+    [SerializeField] private AudioClip player2hitSound;
+    [SerializeField] private AudioClip deadSound;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +69,8 @@ public class Ball : MonoBehaviour
             vel.y = (2 * rigidbody2d.velocity.y / 3) + (coll.collider.attachedRigidbody.velocity.y / 3);
             rigidbody2d.velocity = vel;
 
+            PlayerAudio();
+
             //When the ball hit the player, play particle effect.
             explosion.Play();
 
@@ -75,6 +83,7 @@ public class Ball : MonoBehaviour
         if (coll.collider.CompareTag("EdgeWall") & score.isClap == false)
         {
             rigidbody2d.velocity = new Vector2(0,0);
+            SoundManager.instance.PlaySound(deadSound);
             dead.Play();
             gameObject.GetComponent<TrailRenderer>().enabled = false;
             Invoke("RestartGame", 2f);
@@ -83,11 +92,28 @@ public class Ball : MonoBehaviour
         }
     }
 
+    void PlayerAudio()
+    {
+        if (counter%2==0)
+        {
+            SoundManager.instance.PlaySound(player1hitSound);
+        }
+        else if (counter%2==1)
+        {
+            SoundManager.instance.PlaySound(player2hitSound);
+        }
+    }
+
     void SetDifficulty()
     {
-        if (counter == 4)
+        if (counter == 2)
         {
             speed = 5;
+            rigidbody2d.velocity = new Vector2(speed, speed);
+        }
+        else if (counter == 6)
+        {
+            speed = 6;
             rigidbody2d.velocity = new Vector2(speed, speed);
         }
         else if (counter == 8)
